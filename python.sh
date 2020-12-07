@@ -1,14 +1,5 @@
-#!/bin/bash
-
-
-PYTHON_VERSION_MAJOR="3"
-PYTHON_VERSION_MINOR="8"
-PYTHON_VERSION_PATCH="1"
-
-
 function __python_alias_darwin() {
-    export PATH="$(brew --prefix)/Cellar/python@${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}.${PYTHON_VERSION_PATCH}/bin:$PATH"
-    export DYLD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_LIBRARY_PATH
+    export DYLD_LIBRARY_PATH=$(brew --prefix)/opt/openssl/lib:$DYLD_LIBRARY_PATH
     alias python="python3"
     alias pip="pip3"
 }
