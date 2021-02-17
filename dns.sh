@@ -22,3 +22,4 @@ function dns_flush() {
         *) echo "$(basename $0): Not implemented for $(uname -s) OS" >&2; exit 1;;
     esac
 }
+

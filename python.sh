@@ -5,13 +5,16 @@ function __python_alias_darwin() {
 }
 
 
-function __python_alias() {
-    case $(uname -s) in
-        Darwin) __python_alias_darwin;;
-        *) echo "$(basename $0): Not implemented for $(uname -s) OS" >&2;;
-    esac
+function pip_upgrade_all() {
+    local frozen=$(mktemp)
+    pip list --outdated --format=freeze | cut -d '=' -f 1 > ${frozen}
+    pip install --upgrade -r ${frozen}
+    rm ${frozen}
 }
 
 
-# Entry point
-__python_alias
+# Run implicits functions
+case $(uname -s) in
+    Darwin) __python_alias_darwin;;
+esac
+
