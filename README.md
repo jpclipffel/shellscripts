@@ -20,7 +20,7 @@ Two types of scripts are available:
 
 | Script          | Type      | Functions pattern(s) | Description                     |
 |-----------------|-----------|----------------------|---------------------------------|
-| `debug`         | Implicit  | -                    | Run debugs/controls/checks      |
+| `debug.sh`      | Implicit  | -                    | Run debugs/controls/checks      |
 | `python.sh`     | Both      | `pip_`               | Aliases Python and Python tools |
 | `ssh.sh`        | Functions | `ssh_`               | SSH client snippets             |
 | `dns.sh`        | Functions | `dns_`               | Local DNS snippets              |
@@ -28,3 +28,4 @@ Two types of scripts are available:
 | `java.sh`       | Functions | `java`               | Properly bind `java` command    |
 | `airport.sh`    | Functions | `airport`            | Properly bind `airport` command |
 | `kubernetes.sh` | Functions | `k8s_`               | Some K8S helpers                |
+| `youtubedl.sh`  | Functions | `ydl_`               | Youtube-DL helpers              |
