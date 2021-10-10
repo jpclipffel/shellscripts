@@ -18,9 +18,9 @@ function __debug_darwin()
 
     # [Debug] Remove signature control for VSCode render to avoid shell lagging
     # See https://github.com/microsoft/vscode/issues/105446
-    if [ -e "/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app" ]; then
-        codesign --remove-signature "/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app" &> /dev/null
-    fi
+    # if [ -e "/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app" ]; then
+    #    codesign --remove-signature "/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app" &> /dev/null
+    # fi
 }
 
 
@@ -33,4 +33,3 @@ case  $(uname -s) in
     Darwin*) __debug_darwin;;
     Linux) __debug_linux;;
 esac
-

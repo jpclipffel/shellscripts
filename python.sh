@@ -17,4 +17,3 @@ function pip_upgrade_all() {
 case $(uname -s) in
     Darwin) __python_alias_darwin;;
 esac
-
