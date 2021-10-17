@@ -28,4 +28,48 @@ Two types of scripts are available:
 | `java.sh`       | Functions | `java`               | Properly bind `java` command    |
 | `airport.sh`    | Functions | `airport`            | Properly bind `airport` command |
 | `kubernetes.sh` | Functions | `k8s_`               | Some K8S helpers                |
-| `youtubedl.sh`  | Functions | `ydl_`               | Youtube-DL helpers              |
+| `youtubedl.sh`  | Functions | `ydl`, `ydl_`        | Youtube-DL helpers              |
+
+## Scripts
+
+### `debug.sh`
+
+Run checks at Shell startup.
+
+### `python.sh`
+
+* `__python_alias_darwin`: Setup the proper Python aliases and environement
+* `pip_upgrade_all`: Upgrade all Python packages at once
+
+### `ssh.sh`
+
+* `ssh_hosts`: Lists SSH hosts
+
+### `dns.sh`
+
+* `dns_flush`: Flushes chached hosts
+
+### `nmap.sh`
+
+* `nmap_discover`: Runs a full NMap scan
+* `nmap_discover_fast`: Runs a fast NMap scan
+
+### `java.sh`
+
+* `java`: Runs Java
+
+### `airport.sh`
+
+* `airport`: Runs Airport CLI
+
+### `kubernetes.sh`
+
+* `k8s_merge_configs`: Merges local Kubeconfigs into a single one
+
+### `youtubedl.sh`
+
+* `ydl_clone`: Adds Youtube-dl configuration files to a directory and download videos
+* `ydl_update`: Downloads new videos
+* `ydl_configure`: Updates Youtube-dl configuration files
+* `ydl_ps1`: Echoes `[ydl]` when a Youtube-dl repository
+* `ydl`: Wrapper around other `ydl_*` command
