@@ -21,7 +21,7 @@ Two types of scripts are available:
 | Script          | Type      | Functions pattern(s) | Description                     |
 |-----------------|-----------|----------------------|---------------------------------|
 | `debug.sh`      | Implicit  | -                    | Run debugs/controls/checks      |
-| `python.sh`     | Both      | `pip_`               | Aliases Python and Python tools |
+| `python.sh`     | Both      | `pip_`, `*env*       | Aliases Python and Python tools |
 | `ssh.sh`        | Functions | `ssh_`               | SSH client snippets             |
 | `dns.sh`        | Functions | `dns_`               | Local DNS snippets              |
 | `nmap.sh`       | Functions | `nmap_`              | NMap snippets                   |
@@ -40,6 +40,8 @@ Run checks at Shell startup.
 
 * `__python_alias_darwin`: Setup the proper Python aliases and environement
 * `pip_upgrade_all`: Upgrade all Python packages at once
+* `venvs`: List virtual envs
+* `aenv`: Activate a virtual env
 
 ### `ssh.sh`
 
