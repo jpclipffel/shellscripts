@@ -1,5 +1,5 @@
 # List of common virtual envs paths
-__VENVS_PATH=("${HOME}/.virtualenvs" "${HOME}/.venvs")
+__VENVS_PATH=("${HOME}/.venvs" "${HOME}/.virtualenvs")
 
 
 function __python_alias_darwin() {
