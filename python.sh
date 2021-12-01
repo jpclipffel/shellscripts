@@ -6,6 +6,7 @@ function __python_alias_darwin() {
     export DYLD_LIBRARY_PATH=$(brew --prefix)/opt/openssl/lib:$DYLD_LIBRARY_PATH
     alias python="python3"
     alias pip="pip3"
+    alias venv="python3 -m venv"
 }
 
 
