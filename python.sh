@@ -2,7 +2,27 @@
 __VENVS_PATH=("${HOME}/.venvs" "${HOME}/.virtualenvs")
 
 
+# Select the proper Python version on macOS (brew-backed).
+function __python_select_darwin() {
+    # Bind to proper OpenSSL lib
+    export DYLD_LIBRARY_PATH=$(brew --prefix)/opt/openssl/lib:$DYLD_LIBRARY_PATH
+    # Locate the latest Python version installed in Brew prefix
+    local python=$(\
+        find $(brew --prefix)/opt -maxdepth 1 -name "python@*" \
+        | sort -t "." -k1,1n -k2,2n -k3,3n \
+        | tail -n 1)
+    # Setup Python aliases
+    alias python="${python}/bin/python3"
+    alias python3="${python}/bin/pip3"
+    # Setup PIP aliases
+    alias pip="${python}/bin/pip3"
+    alias pip3="${python}/bin/pip3"
+}
+
+
+# Setup the Python aliases
 function __python_alias_darwin() {
+    # Load OpenSSL librarires
     export DYLD_LIBRARY_PATH=$(brew --prefix)/opt/openssl/lib:$DYLD_LIBRARY_PATH
     alias python="python3"
     alias pip="pip3"
@@ -45,5 +65,5 @@ function venvs() {
 
 # Run implicits functions
 case $(uname -s) in
-    Darwin) __python_alias_darwin;;
+    Darwin) __python_select_darwin;;
 esac
