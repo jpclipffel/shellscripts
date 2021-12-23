@@ -2,7 +2,7 @@
 __VENVS_PATH=("${HOME}/.venvs" "${HOME}/.virtualenvs")
 
 
-# Select the proper Python version on macOS (brew-backed).
+# Select the proper Python versions on macOS (brew).
 function __python_select_darwin() {
     # Bind to proper OpenSSL lib
     export DYLD_LIBRARY_PATH=$(brew --prefix)/opt/openssl/lib:$DYLD_LIBRARY_PATH
@@ -13,23 +13,18 @@ function __python_select_darwin() {
         | tail -n 1)
     # Setup Python aliases
     alias python="${python}/bin/python3"
-    alias python3="${python}/bin/pip3"
+    alias python3="${python}/bin/python3"
     # Setup PIP aliases
     alias pip="${python}/bin/pip3"
     alias pip3="${python}/bin/pip3"
+    # Venv
+    alias venv="${python}/bin/python3 -m venv"
+    # iPython
+    alias ipython="${python}/bin/python3 -m IPython"
 }
 
 
-# Setup the Python aliases
-function __python_alias_darwin() {
-    # Load OpenSSL librarires
-    export DYLD_LIBRARY_PATH=$(brew --prefix)/opt/openssl/lib:$DYLD_LIBRARY_PATH
-    alias python="python3"
-    alias pip="pip3"
-    alias venv="python3 -m venv"
-}
-
-
+# Updagre all Python's PIP packages at once
 function pip_upgrade_all() {
     local frozen=$(mktemp)
     pip list --outdated --format=freeze | cut -d '=' -f 1 > ${frozen}
