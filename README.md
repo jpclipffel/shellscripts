@@ -29,6 +29,8 @@ Two types of scripts are available:
 | `airport.sh`    | Functions | `airport`            | Properly bind `airport` command |
 | `kubernetes.sh` | Functions | `k8s_`               | Some K8S helpers                |
 | `youtubedl.sh`  | Functions | `ydl`, `ydl_`        | Youtube-DL helpers              |
+| `ansible.sh`    | Functions | `ansible_`           | Ansible helpers                 |
+| `brew.sh`       | Functions | `brew_`              | Brew helpers                    |
 
 ## Scripts
 
@@ -38,7 +40,7 @@ Run checks at Shell startup.
 
 ### `python.sh`
 
-* `__python_alias_darwin`: Setup the proper Python aliases and environement
+* `__python_select_darwin`: Setup the proper Python environement on macOS
 * `pip_upgrade_all`: Upgrade all Python packages at once
 * `venvs`: List virtual envs
 * `aenv`: Activate a virtual env
@@ -73,5 +75,14 @@ Run checks at Shell startup.
 * `ydl_clone`: Adds Youtube-dl configuration files to a directory and download videos
 * `ydl_update`: Downloads new videos
 * `ydl_configure`: Updates Youtube-dl configuration files
-* `ydl_ps1`: Echoes `[ydl]` when a Youtube-dl repository
+* `ydl_ps1`: Echoes `[ydl]` in a Youtube-dl repository
 * `ydl`: Wrapper around other `ydl_*` command
+
+### `ansible.sh`
+
+* `ansible_install`: Install Ansible
+* `ansible_update`: Update Ansible
+
+### `brew.sh`
+
+* `brew_ps1`: Echoes Brew status information as `[brew:{outdated count}]`
