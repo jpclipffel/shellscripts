@@ -15,6 +15,7 @@ function ydl_update() {
     # Update
     cd "${dir}"
     youtube-dl --config-location "${ydl_cfg_filename}"
+    cd "${OLDPWD}"
 }
 
 # (re)Configures a youtube-dl repository
@@ -69,7 +70,7 @@ function ydl_clone() {
 
 # Echoes '[ydl]' in red when cwd is a youtube-dl repository
 function ydl_ps1() {
-    [[ -f "${ydl_cfg_filename}" ]] && echo "[\e[0;31mydl\e[m]"
+    [[ -f "${ydl_cfg_filename}" ]] && echo "[ydl]" || return
 }
 
 
