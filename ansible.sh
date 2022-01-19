@@ -10,8 +10,8 @@ function ansible_install() {
     echo "Please select Ansible flavour ('ansible' or 'ansible-core'): "
     read "flavour"
     case "${flavour}" in
-        ansible) pip install ansible;;
-        ansible-core) pip install ansible-core;;
+        ansible) pip install ansible ansible-lint;;
+        ansible-core) pip install ansible-core ansible-lint;;
     esac
 }
 
@@ -19,7 +19,7 @@ function ansible_install() {
 function ansible_update() {
     [[ -z "${VIRTUAL_ENV}" ]] && echo "Not in a venv / virtualenv" && return 1
     type ansible &> /dev/null || (echo "Ansible is not installed (hint: run 'ansible_install')" && return 1)
-    local packages=("ansible-core")
+    local packages=("ansible-core" "ansible-lint")
     pip list --format "freeze" | grep "ansible" && packages+=("ansible")
     # Update
     pip install --upgrade "${packages[@]}"
