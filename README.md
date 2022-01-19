@@ -18,19 +18,20 @@ Two types of scripts are available:
 * **Implicit**: run once at Shell startup
 * **Functions**: exposes functions with a common naming pattern, e.g. `dns_`
 
-| Script          | Type      | Functions pattern(s) | Description                     |
-|-----------------|-----------|----------------------|---------------------------------|
-| `debug.sh`      | Implicit  | -                    | Run debugs/controls/checks      |
-| `python.sh`     | Both      | `pip_`, `*env*       | Aliases Python and Python tools |
-| `ssh.sh`        | Functions | `ssh_`               | SSH client snippets             |
-| `dns.sh`        | Functions | `dns_`               | Local DNS snippets              |
-| `nmap.sh`       | Functions | `nmap_`              | NMap snippets                   |
-| `java.sh`       | Functions | `java`               | Properly bind `java` command    |
-| `airport.sh`    | Functions | `airport`            | Properly bind `airport` command |
-| `kubernetes.sh` | Functions | `k8s_`               | Some K8S helpers                |
-| `youtubedl.sh`  | Functions | `ydl`, `ydl_`        | Youtube-DL helpers              |
-| `ansible.sh`    | Functions | `ansible_`           | Ansible helpers                 |
-| `brew.sh`       | Functions | `brew_`              | Brew helpers                    |
+| Script          | Type      | Functions pattern(s)  | Description                     |
+|-----------------|-----------|-----------------------|---------------------------------|
+| `debug.sh`      | Implicit  | -                     | Run debugs/controls/checks      |
+| `python.sh`     | Both      | `pip_*`, `(a)venv(s)` | Aliases Python and Python tools |
+| `ssh.sh`        | Functions | `ssh_`                | SSH client snippets             |
+| `dns.sh`        | Functions | `dns_`                | Local DNS snippets              |
+| `nmap.sh`       | Functions | `nmap_`               | NMap snippets                   |
+| `java.sh`       | Functions | `java`                | Properly bind `java` command    |
+| `airport.sh`    | Functions | `airport`             | Properly bind `airport` command |
+| `kubernetes.sh` | Functions | `k8s_*`               | Some K8S helpers                |
+| `youtubedl.sh`  | Functions | `ydl`, `ydl_*`        | Youtube-DL helpers              |
+| `ansible.sh`    | Functions | `ansible_*`           | Ansible helpers                 |
+| `brew.sh`       | Functions | `brew`, `brew_*`      | Brew helpers                    |
+| `launchctl.sh`  | Functions | `launchctl`           | macOS's `launchctl` helpers     |
 
 ## Scripts
 
@@ -85,4 +86,11 @@ Run checks at Shell startup.
 
 ### `brew.sh`
 
+* `brew`: Wraps `brew` and patch commands:
+  * `brew upgrade`: Run `brew upgrade` and update custom Brew's outdated report
 * `brew_ps1`: Echoes Brew status information as `[brew:{outdated count}]`
+
+### `launchctl.sh`
+
+* `launchctl`: Wraps `launchctl` and add new commands:
+  * `launchctl dump`: List all units
