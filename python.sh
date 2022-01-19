@@ -11,16 +11,13 @@ function __python_select_darwin() {
         find $(brew --prefix)/opt -maxdepth 1 -name "python@*" \
         | sort -t "." -k1,1n -k2,2n -k3,3n \
         | tail -n 1)
-    # Setup Python aliases
-    alias python="${python}/bin/python3"
-    alias python3="${python}/bin/python3"
-    # Setup PIP aliases
-    alias pip="${python}/bin/pip3"
-    alias pip3="${python}/bin/pip3"
-    # Venv
-    alias venv="${python}/bin/python3 -m venv"
-    # iPython
-    alias ipython="${python}/bin/python3 -m IPython"
+    # Set latest Python as default one
+    export PATH="${python}/bin:$PATH"
+    # Set common Python aliases
+    alias python="python3"
+    alias pip="pip3"
+    alias venv="python3 -m venv"
+    alias ipython="python3 -m IPython"
 }
 
 
