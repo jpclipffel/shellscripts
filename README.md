@@ -31,7 +31,9 @@ Two types of scripts are available:
 | `youtubedl.sh`  | Functions | `ydl`, `ydl_*`        | Youtube-DL helpers              |
 | `ansible.sh`    | Functions | `ansible_*`           | Ansible helpers                 |
 | `brew.sh`       | Functions | `brew`, `brew_*`      | Brew helpers                    |
+| `vimc.sh`       | Functions | `vim*`                | VIM tools                       |
 | `launchctl.sh`  | Functions | `launchctl`           | macOS's `launchctl` helpers     |
+| `shell.sh`      | Functions | N/A                   | Shell aliases and tools         |
 
 ## Scripts
 
@@ -94,3 +96,12 @@ Run checks at Shell startup.
 
 * `launchctl`: Wraps `launchctl` and add new commands:
   * `launchctl dump`: List all units
+
+### `vim.sh`
+
+* `vimc`: Show VIM shortcuts on various topics
+
+### `shell.sh`
+
+* `resource`: Reload the current Shell profile (e.g. `~/.zshrc`)
+
