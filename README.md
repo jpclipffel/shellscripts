@@ -34,6 +34,7 @@ Two types of scripts are available:
 | `vimc.sh`       | Functions | `vim*`                | VIM tools                       |
 | `launchctl.sh`  | Functions | `launchctl`           | macOS's `launchctl` helpers     |
 | `shell.sh`      | Functions | N/A                   | Shell aliases and tools         |
+| `git.sh`        | Functions | `g*`                  | Git aliases and tools           |
 
 ## Scripts
 
@@ -104,4 +105,11 @@ Run checks at Shell startup.
 ### `shell.sh`
 
 * `resource`: Reload the current Shell profile (e.g. `~/.zshrc`)
+
+### `git.sh`
+
+* `gc`: Alias for `git commit`
+* `gcm`: Alias for `git commit -m`
+* `gp`: Alias for `git push`
+* `gs`: Alias for `git status`
 
