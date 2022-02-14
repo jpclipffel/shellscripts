@@ -24,3 +24,15 @@ function ansible_update() {
     # Update
     pip install --upgrade "${packages[@]}"
 }
+
+
+function __patch_ansible_objc_fork {
+    export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+}
+
+
+# Run implicit functions
+case  $(uname -s) in
+    Darwin*) __patch_ansible_objc_fork;;
+esac
+
