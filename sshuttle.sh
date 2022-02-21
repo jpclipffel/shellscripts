@@ -5,7 +5,15 @@ SSHUTTLE_CONFS="${HOME}/.sshuttle"
 # $1: configuration name (should be located in ${SSHUTTLE_CONFS})
 # $2: other sshuttle arguments
 function shut() {
-    [[ -z "${1}" ]] && echo "Usage: $(basename ${0}) <config> [...]" && return 
+    if [[ -z "${1}" ]]; then
+        cat << EOF
+Usage: $(basename ${0}) <config> [...]
+
+Where <config> is one of:
+$(ls ${SSHUTTLE_CONFS})
+EOF
+        return
+    fi
 
     local config="${1}"
     shift
