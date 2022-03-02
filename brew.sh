@@ -1,4 +1,6 @@
-__BREW="${__BREW:=/usr/local/bin/brew}"
+[[ -e /usr/local/bin/brew ]] && __BREW="${__BREW:=/usr/local/bin/brew}"
+[[ -e /home/linuxbrew/.linuxbrew/bin/brew ]] && __BREW="${__BREW:=/home/linuxbrew/.linuxbrew/bin/brew}"
+
 __BREW_OUTDATED_REPORT="${HOME}/.brew_outdated_report"
 
 
