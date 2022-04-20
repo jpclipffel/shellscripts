@@ -16,6 +16,7 @@ function ansible_install() {
 }
 
 
+# Update Ansible
 function ansible_update() {
     [[ -z "${VIRTUAL_ENV}" ]] && echo "Not in a venv / virtualenv" && return 1
     type ansible &> /dev/null || (echo "Ansible is not installed (hint: run 'ansible_install')" && return 1)
@@ -26,9 +27,14 @@ function ansible_update() {
 }
 
 
+# Patch for Darwin (macOS)
 function __patch_ansible_objc_fork {
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 }
+
+
+# Alias 'ap' to 'ansible-playbook'
+alias ap="ansible-playbook"
 
 
 # Run implicit functions
