@@ -13,9 +13,12 @@ function k8s_merge_configs() {
 # Install MicroK8s
 function k8s_microk8s_install() {
     if [[ $(uname -s) == "Linux" ]]; then
+        echo "Installing MicroK8s"
         sudo snap install microk8s --classic --channel=latest/stable
+        echo "Setting groups"
         sudo usermod -a -G microk8s "${USER}"
-        newgrp microk8s
+        echo "Enabling MicroK8s base addons"
+        sudo microk8s enable dns hostpath-storage ingress
     else
         echo "[$(basename $0)] MicroK8s installable only on Linux"
     fi
@@ -23,4 +26,5 @@ function k8s_microk8s_install() {
 
 # MicroK8s aliases
 alias microk8s_install=k8s_microk8s_install
+alias mk="microk8s kubectl"
 
