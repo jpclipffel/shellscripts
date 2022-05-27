@@ -9,3 +9,16 @@ function k8s_merge_configs() {
     # Merge
     kubectl config view --flatten
 }
+
+# Install MicroK8s
+function k8s_microk8s_install() {
+    if [[ $(uname -s) == "Linux" ]]; then
+        sudo snap install microk8s --classic --channel=latest/stable
+    else
+        echo "[$(basename $0)] MicroK8s installable only on Linux"
+    fi
+}
+
+# MicroK8s aliases
+alias microk8s_install=k8s_microk8s_install
+
