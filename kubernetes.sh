@@ -14,6 +14,8 @@ function k8s_merge_configs() {
 function k8s_microk8s_install() {
     if [[ $(uname -s) == "Linux" ]]; then
         sudo snap install microk8s --classic --channel=latest/stable
+        sudo usermod -a -G microk8s "${USER}"
+        newgrp microk8s
     else
         echo "[$(basename $0)] MicroK8s installable only on Linux"
     fi
