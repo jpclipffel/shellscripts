@@ -51,18 +51,30 @@ function ydl_configure() {
 EOF
 }
 
+
+# Initializes a youtube-dl repository
+# ${1}: Repository URL
+# ${2}: Repository directory
+function ydl_init() {
+    # Assertions
+    [[ -z ${1} ]] || [[ -z ${2} ]] && echo "Usage: $(basename ${0}) <url> <directory>" && return 1;
+    # Create & init directory
+    mkdir -p "${2}"
+    echo "Creating youtube-dl urls file at ${ydl_cfg_filename}"
+    echo "${1}" > "${2}/${ydl_urls_filename}"
+    # Configure repository
+    ydl_configure "${2}"
+}
+
+
 # Clones (intialize) a youtube-dl repository
 # ${1}: Repository URL
 # ${2}: Repository directory
 function ydl_clone() {
     # Assertions
     [[ -z ${1} ]] || [[ -z ${2} ]] && echo "Usage: $(basename ${0}) <url> <directory>" && return 1;
-    # Create & init repository
-    mkdir -p "${2}"
-    echo "Creating youtube-dl urls file at ${ydl_cfg_filename}"
-    echo "${1}" > "${2}/${ydl_urls_filename}"
-    # Configure repository
-    ydl_configure "$2"
+    # Clone repository
+    ydl_init "${1}" "${2}"
     echo "Updating repository"
     ydl_update "${2}"
 }
@@ -77,9 +89,10 @@ function ydl_ps1() {
 # Shortcuts / aliases function to ydl_ functions
 function ydl() {
     case "${1}" in
+        init) shift && ydl_init "${@}";;
         clone) shift && ydl_clone "${@}";;
         update) shift && ydl_update "${@}";;
         reconfigure) shift && ydl_configure "${@}";;
-        *) echo "Usage: $(basename ${0}) {clone|update|reconfigure}";;
+        *) echo "Usage: $(basename ${0}) {init|clone|update|reconfigure}";;
     esac
 }
