@@ -18,6 +18,16 @@ function ydl_update() {
     cd "${OLDPWD}"
 }
 
+
+# Updates all youtube-dl repositories found in current directory
+function ydl_update_all() {
+    for repo in ./*; do
+        if [[ -d "${repo}" ]] && [[ -f "${repo}/${ydl_cfg_filename}" ]] && [[ -f "${repo}/${ydl_urls_filename}" ]]; then
+            ydl_update "${repo}"
+        fi
+    done
+}
+
 # (re)Configures a youtube-dl repository
 # ${1}: Repository directory
 function ydl_configure() {
@@ -92,7 +102,8 @@ function ydl() {
         init) shift && ydl_init "${@}";;
         clone) shift && ydl_clone "${@}";;
         update) shift && ydl_update "${@}";;
+        update-all) shift && ydl_update_all "${@}";;
         reconfigure) shift && ydl_configure "${@}";;
-        *) echo "Usage: $(basename ${0}) {init|clone|update|reconfigure}";;
+        *) echo "Usage: $(basename ${0}) {init|clone|update|update-all|reconfigure}";;
     esac
 }
