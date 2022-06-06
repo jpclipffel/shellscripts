@@ -1,7 +1,7 @@
 # Install Ansible
 # NB: Do not use 'read -p "prompt"' or 'read "foo?prompt"' to keep
 # compatibility between Bash and ZSH
-function ansible_install() {
+function ansible-install() {
     [[ -z "${VIRTUAL_ENV}" ]] && echo "Not in a venv / virtualenv" >&2 && return 1
     echo "Ansible comes in two flavours:"
     echo "ansible-core : Minimal installation"
@@ -17,7 +17,7 @@ function ansible_install() {
 
 
 # Update Ansible
-function ansible_update() {
+function ansible-update() {
     [[ -z "${VIRTUAL_ENV}" ]] && echo "Not in a venv / virtualenv" && return 1
     type ansible &> /dev/null || (echo "Ansible is not installed (hint: run 'ansible_install')" && return 1)
     local packages=("ansible-core" "ansible-lint")
@@ -27,18 +27,13 @@ function ansible_update() {
 }
 
 
-# Patch for Darwin (macOS)
+# Patch for Darwin
 function __patch_ansible_objc_fork {
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 }
-
-
-# Alias 'ap' to 'ansible-playbook'
-alias ap="ansible-playbook"
 
 
 # Run implicit functions
 case  $(uname -s) in
     Darwin*) __patch_ansible_objc_fork;;
 esac
-

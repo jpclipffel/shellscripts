@@ -1,5 +1,5 @@
 # Merge Kubeconfigs
-function k8s_merge_configs() {
+function k8s-merge-configs() {
     # Reset KUBECONFIG
     export KUBECONFIG=""
     # Fetch all configuration expect the standard '~/.kube/config'
@@ -10,8 +10,9 @@ function k8s_merge_configs() {
     kubectl config view --flatten
 }
 
+
 # Install MicroK8s
-function k8s_microk8s_install() {
+function k8s-microk8s-install() {
     if [[ $(uname -s) == "Linux" ]]; then
         echo "Installing MicroK8s"
         sudo snap install microk8s --classic --channel=latest/stable
@@ -25,6 +26,4 @@ function k8s_microk8s_install() {
 }
 
 # MicroK8s aliases
-alias microk8s_install=k8s_microk8s_install
 alias mk="microk8s kubectl"
-

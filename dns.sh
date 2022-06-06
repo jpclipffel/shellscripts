@@ -15,7 +15,7 @@ function __dns_flush_linux() {
 
 
 # Flush DNS cache
-function dns_flush() {
+function dns-flush() {
     case  $(uname -s) in
         Darwin*) __dns_flush_darwin;;
         Linux) __dns_flush_linux;;

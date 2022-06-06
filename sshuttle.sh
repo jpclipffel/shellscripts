@@ -22,5 +22,5 @@ EOF
         sshuttle "@${SSHUTTLE_CONFS}/${config}" "${@}"
     else
         echo "Configuration '${config}' not found in '${SSHUTTLE_CONFS}'"
-    fi  
+    fi
 }
