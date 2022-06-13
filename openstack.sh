@@ -8,7 +8,7 @@ alias ost=openstack
 
 # OpenStack cloud name PS1
 function openstack_ps1() {
-    [[ -n "${OS_CLOUD}" ]] && echo "[os:${OS_CLOUD}] " || return
+    [[ -n "${OS_CLOUD}" ]] && echo "[${red}os:${orange}${OS_CLOUD}${reset_color}] " || return
 }
 
 

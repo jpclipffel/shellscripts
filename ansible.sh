@@ -33,6 +33,10 @@ function __patch_ansible_objc_fork {
 }
 
 
+# Ansible aliases
+alias ap="ansible-playbook"
+
+
 # Run implicit functions
 case  $(uname -s) in
     Darwin*) __patch_ansible_objc_fork;;
