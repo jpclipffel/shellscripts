@@ -1,6 +1,6 @@
 # ArgoCD context name PS1
 function argocd_ps1() {
-    [[ "${ARGOCD_PS1_ENABLED}" == "on" ]] && echo "[${orange}acd:${green}$(argocd context | grep '\*' | awk '{print $2}')${reset_color}] " || return
+    [[ "${ARGOCD_PS1_ENABLED}" == "on" ]] && echo "[${orange}acd:${green}$(argocd context 2&>/dev/null | grep '\*' | awk '{print $2}')${reset_color}] " || return
 }
 
 # Enable ArgoCD PS1
