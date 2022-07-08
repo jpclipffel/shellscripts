@@ -10,8 +10,8 @@ function ansible-install() {
     echo "Please select Ansible flavour ('ansible' or 'ansible-core'): "
     read "flavour"
     case "${flavour}" in
-        ansible) pip install ansible ansible-lint;;
-        ansible-core) pip install ansible-core ansible-lint;;
+        ansible) pip install ansible ansible-lint ansible-vault;;
+        ansible-core) pip install ansible-core ansible-lint ansible-vault;;
     esac
 }
 
