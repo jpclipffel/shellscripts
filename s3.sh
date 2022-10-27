@@ -23,7 +23,7 @@ function s3cmduc() {
 
 # ArgoCD context name PS1
 function s3cmd_ps1() {
-    [[ "${S3CMD_PS1_ENABLED}" == "on" ]] && echo "[${red}s3cmd:${purple}$(basename $(readlink .s3cfg))${reset_color}] " || return
+    [[ "${S3CMD_PS1_ENABLED}" == "on" ]] && echo "[${red}s3cmd:${purple}$(basename $(readlink ~/.s3cfg))${reset_color}] " || return
 }
 
 
