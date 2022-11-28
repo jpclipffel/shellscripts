@@ -3,7 +3,7 @@ function k8s-merge-configs() {
     # Reset KUBECONFIG
     export KUBECONFIG=""
     # Fetch all configuration expect the standard '~/.kube/config'
-    for kc in $(find ${HOME}/.kube -maxdepth 1 -type f ! -name "config"); do
+    for kc in $(find -L ${HOME}/.kube -maxdepth 1 -type f ! -name "config"); do
         export KUBECONFIG="${KUBECONFIG}:${kc}"
     done
     # Merge
