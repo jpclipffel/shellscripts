@@ -1,11 +1,8 @@
 function __dns_flush_darwin() {
-    sudo killall -HUP mDNSResponder
-    sudo killall mDNSResponderHelper
+    echo "Flusing cache..."
     sudo dscacheutil -flushcache
-    # ---
-    # Force mDNSResponder restart
-    # sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
-    # sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
+    echo "HUP mDNSResponder..."
+    sudo killall -HUP mDNSResponder
 }
 
 
