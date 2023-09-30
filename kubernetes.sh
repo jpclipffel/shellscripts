@@ -25,5 +25,15 @@ function k8s-microk8s-install() {
     fi
 }
 
+
+# Custom kube-ps1 context function
+# $1: Context name
+function KUBE_PS1_CLUSTER_FUNCTION() {
+    export KUBE_PS1_CLUSTER_FUNCTION="KUBE_PS1_CLUSTER_FUNCTION"
+    echo "${1}" | sed \
+        -e 's|arn:aws:eks:.*/||' 
+}
+KUBE_PS1_CLUSTER_FUNCTION
+
 # MicroK8s aliases
 alias mk="microk8s kubectl"
