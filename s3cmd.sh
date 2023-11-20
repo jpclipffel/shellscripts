@@ -21,19 +21,24 @@ function s3cmduc() {
 }
 
 
-# ArgoCD context name PS1
+# S3cmd context name PS1
 function s3cmd_ps1() {
-    [[ "${S3CMD_PS1_ENABLED}" == "on" ]] && echo "[${red}s3cmd:${purple}$(basename $(readlink ~/.s3cfg))${reset_color}] " || return
+    # [[ "${S3CMD_PS1_ENABLED}" == "on" ]] && echo "[${red}s3cmd:${purple}$(basename $(readlink ~/.s3cfg))${reset_color}] " || return
+    if [[ "${S3CMD_PS1_ENABLED}" == "on" ]]; then
+        echo "[${red}s3cmd:${purple}$(basename $(readlink ~/.s3cfg))${reset_color}] "
+    else
+        return
+    fi
 }
 
 
-# Enable ArgoCD PS1
+# Enable S3cmd PS1
 function s3cmd_ps1_on() {
     export S3CMD_PS1_ENABLED="on"
 }
 
 
-# Disable ArgoCD PS1
+# Disable S3cmd PS1
 function s3cmd_ps1_off() {
     export S3CMD_PS1_ENABLED="off"
 }
