@@ -7,17 +7,28 @@ function __python_select_darwin() {
     # Bind to proper OpenSSL lib
     export DYLD_LIBRARY_PATH=$(brew --prefix)/opt/openssl/lib:$DYLD_LIBRARY_PATH
     # Locate the latest Python version installed in Brew prefix
-    local python=$(\
+    local brew_python_path=$(\
         find $(brew --prefix)/opt -maxdepth 1 -name "python@*" \
         | sort -t "." -k1,1n -k2,2n -k3,3n \
         | tail -n 1)
-    # Set latest Python as default one
-    export PATH="${python}/bin:$PATH"
-    # Set common Python aliases
-    alias python="python3"
-    alias pip="pip3"
-    alias venv="python3 -m venv"
-    alias ipython="python3 -m IPython"
+    if [ -n "${brew_python_path}" ]; then
+        # Add latest Python path in PATH
+        export PATH="${brew_python_path}/bin:$PATH"
+        # Get the Python interpreter path
+        local brew_python_bin="${brew_python_path}/bin/$(basename ${brew_python_path/@/})"
+        # Ensure python3 -> Brew's Python
+        if [ ! -L "${brew_python_path}/bin/python3" ] || [ ! -f "${brew_python_path}/bin/python3" ]; then
+            ln -s "${brew_python_bin}" "${brew_python_path}/bin/python3"
+        fi
+        # Set version-specific aliases
+        alias pip3="python3 -m pip"
+        # Set version-agnotic aliases
+        alias python="python3"
+        alias pip="pip3"
+        # Set tools aliases
+        alias venv="python3 -m venv"
+        alias ipython="python3 -m IPython"
+    fi
 }
 
 
@@ -52,6 +63,12 @@ function venvs() {
             [[ -f "${p}/bin/activate" ]] && printf "%-10s %s\n" "$(basename ${p})" "${p}"
         done
     done
+}
+
+
+# Activate the default virtual environment
+function adp() {
+    avenv "default"
 }
 
 
