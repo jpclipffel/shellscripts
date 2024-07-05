@@ -1,19 +1,12 @@
-# OMZ :: kube_ps1 :: Settings
-KUBE_PS1_SYMBOL_USE_IMG=false
-KUBE_PS1_SYMBOL_DEFAULT="k8s:"
-KUBE_PS1_DIVIDER=" in "
-KUBE_PS1_SEPARATOR=""
-KUBE_PS1_PREFIX="["
-KUBE_PS1_SUFFIX="] "
-
-
-# OMZ :: kube_ps1 :: Aliases
+# OMZ :: Plugins :: kube-ps1 :: Aliases
 alias kon="kubeon"
 alias koff="kubeoff"
 
 
-# OMZ :: kube_ps1 :: Initial status
-kubeoff
+# OMZ :: Plugins :: kube-ps1 :: KUBE_PS1_CLUSTER_FUNCTION :: Hide AWS/EKS artifacts
+function _kube_ps1_cluster__eks() {
+    echo "${1}" | rev | cut -d '/' -f 1 | rev
+}
 
 
 # Merge Kubeconfigs
