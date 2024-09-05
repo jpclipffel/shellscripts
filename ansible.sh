@@ -63,8 +63,8 @@ function ansible-ara() {
 }
 
 
-# Run Ansible playbook with ARA as callback plugin
-function ansible-playbook-ara() {
+# Invoke ansible-playbook with ARA as callback plugin
+function ap-ara() {
     ANSIBLE_CALLBACK_PLUGINS="$(python3 -m ara.setup.callback_plugins)" \
     ANSIBLE_ACTION_PLUGINS="$(python3 -m ara.setup.action_plugins)" \
     ANSIBLE_LOOKUP_PLUGINS="$(python3 -m ara.setup.lookup_plugins)" \
@@ -72,14 +72,31 @@ function ansible-playbook-ara() {
 }
 
 
+# Invoke ansible-playbook with support for multiple configuration file
+function ap() {
+    if [[ -f "ansible-local.cfg" ]]; then
+        echo "IMPORTANT - Runing ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
+        ANSIBLE_CONFIG="ansible-local.cfg" ansible-playbook "${@}"
+    else
+        ansible-playbook "${@}"
+    fi
+}
+
+# Invoke ansible-navigator
+function an() {
+    if [[ -f "ansible-local.cfg" ]]; then
+        echo "IMPORTANT - Runing ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
+        ANSIBLE_CONFIG="ansible-local.cfg" ansible-navigator "${@}"
+    else
+        ansible-navigator "${@}"
+    fi
+}
+
+
 # Patch for Darwin
 function __patch_ansible_objc_fork {
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 }
-
-
-# Ansible aliases
-alias ap="ansible-playbook"
 
 
 # Run implicit functions
