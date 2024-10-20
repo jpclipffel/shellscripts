@@ -92,6 +92,16 @@ function an() {
     fi
 }
 
+# Invoke ansible-inventory
+function ai() {
+    if [[ -f "ansible-local.cfg" ]]; then
+        echo "IMPORTANT - Runing ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
+        ANSIBLE_CONFIG="ansible-local.cfg" ansible-inventory "${@}"
+    else
+        ansible-inventory "${@}"
+    fi
+}
+
 
 # Patch for Darwin
 function __patch_ansible_objc_fork {
