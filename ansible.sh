@@ -75,7 +75,7 @@ function ap-ara() {
 # Invoke ansible-playbook with support for multiple configuration file
 function ap() {
     if [[ -f "ansible-local.cfg" ]]; then
-        echo "IMPORTANT - Runing ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
+        echo "IMPORTANT - Running ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
         ANSIBLE_CONFIG="ansible-local.cfg" ansible-playbook "${@}"
     else
         ansible-playbook "${@}"
@@ -85,7 +85,7 @@ function ap() {
 # Invoke ansible-navigator
 function an() {
     if [[ -f "ansible-local.cfg" ]]; then
-        echo "IMPORTANT - Runing ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
+        echo "IMPORTANT - Running ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
         ANSIBLE_CONFIG="ansible-local.cfg" ansible-navigator "${@}"
     else
         ansible-navigator "${@}"
@@ -95,7 +95,7 @@ function an() {
 # Invoke ansible-inventory
 function ai() {
     if [[ -f "ansible-local.cfg" ]]; then
-        echo "IMPORTANT - Runing ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
+        echo "IMPORTANT - Running ansible with ANSIBLE_CONFIG='ansible-local.cfg'"
         ANSIBLE_CONFIG="ansible-local.cfg" ansible-inventory "${@}"
     else
         ansible-inventory "${@}"
@@ -103,13 +103,22 @@ function ai() {
 }
 
 
-# Patch for Darwin
+# Patch for Darwin: Disable Fork protection in macOS
 function __patch_ansible_objc_fork {
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 }
 
 
+# Patch for Darwin: Disable Python proxy
+function __patch_ansible_python_proxy {
+    export no_proxy='*'
+}
+
+
 # Run implicit functions
 case  $(uname -s) in
-    Darwin*) __patch_ansible_objc_fork;;
+    Darwin*)
+        __patch_ansible_objc_fork
+        __patch_ansible_python_proxy
+        ;;
 esac
