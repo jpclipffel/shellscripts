@@ -2,7 +2,14 @@
 [[ -e /usr/local/bin/brew ]] && __BREW="${__BREW:=/usr/local/bin/brew}"
 [[ -e /home/linuxbrew/.linuxbrew/bin/brew ]] && __BREW="${__BREW:=/home/linuxbrew/.linuxbrew/bin/brew}"
 
+
 __BREW_OUTDATED_REPORT="${HOME}/.brew_outdated_report"
+
+
+# Linux helpers for Brew
+function __brew_linux_helpers() {
+    [[ -e "/home/linuxbrew/.linuxbrew/bin/brew" ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+}
 
 
 # Echoes the number of outdated items
@@ -32,3 +39,9 @@ function brew() {
             ;;
     esac
 }
+
+
+# Run implicit functions
+case  $(uname -s) in
+    Linux*) __brew_linux_helpers;;
+esac

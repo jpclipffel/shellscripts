@@ -77,7 +77,7 @@ function ydl_init() {
 }
 
 
-# Clones (intialize) a youtube-dl repository
+# Clones (initialize) a youtube-dl repository
 # ${1}: Repository URL
 # ${2}: Repository directory
 function ydl_clone() {
@@ -96,7 +96,7 @@ function ydl_ps1() {
 }
 
 
-# Shortcuts / aliases function to ydl_ functions
+# The ydl verb-noun interface
 function ydl() {
     case "${1}" in
         init) shift && ydl_init "${@}";;
