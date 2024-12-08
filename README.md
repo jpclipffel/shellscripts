@@ -1,12 +1,20 @@
-# Shell scripts - Various Shell scripts
+# Shell scripts
 
 ## Installation
 
-Add the following snippet to thr Shell configuration file (`.zshrc`, `.bashrc`, etc.):
+Add the following in the Shell configuration file (`.zshrc`, `.bashrc`, etc.):
 
 ```bash
-# Replace <shellscripts> by the local repository path:
-for script in shellscripts/*.sh; do
-    source ${script}
+# Custom :: Scripts
+SCRIPTS_HOME="${HOME}/Projects/jpclipffel/shellscripts"
+SCRIPTS_LIST=(
+    "shell"
+    "macos"
+    "brew"
+    # ...
+    # Add and remove script name (without extension) as needed
+)
+for script in ${SCRIPTS_LIST[@]}; do
+    source "${SCRIPTS_HOME}/${script}.sh"
 done
 ```
